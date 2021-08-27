@@ -1,0 +1,11 @@
+{
+  "name": "indecision-app2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Steve Babb",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
