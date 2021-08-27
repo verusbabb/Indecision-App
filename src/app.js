@@ -5,46 +5,60 @@ console.log("app.js is running");
 const app = {
   title: "My Indecision Apps",
   subTitle: "I'll decide for you!",
-  options: ["One", "Two"],
+  options: ["Item One", "Item Two"],
 };
 
 const template = (
   <div>
     <h1>{app.title}</h1>
-    {app.subTitle && <p>{app.subTitle}</p>}
+    {app.subTitle && <h3>{app.subTitle}</h3>}
     {app.options && app.options.length > 0 ? (
-      <p>
+      <h4>
         Here are your options:
         <ol>
-          <li>{app.options[0]}</li>
-          <li>{app.options[1]}</li>
+          {app.options.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
         </ol>
-      </p>
+      </h4>
     ) : (
       "No options"
     )}
   </div>
 );
 
-const user = {
-  name: "Steve Babb",
-  age: 18,
-  location: "Lawrence",
+let count = 0;
+
+const addOne = () => {
+  count++;
+  renderCounterApp();
 };
 
-function getLocation(location) {
-  if (location) {
-    return <p>location: {location}</p>;
-  }
-}
+const minusOne = () => {
+  count--;
+  renderCounterApp();
+};
 
-const templateTwo = (
-  <div>
-    <h1>{user.name ? user.name : "Anonomous"}</h1>
-    {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
-    {getLocation(user.location)}
-  </div>
-);
+const reset = () => {
+  count = 0;
+  renderCounterApp();
+};
+
+console.log(count);
+
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+const renderCounterApp = () => {
+  const templateTwo = (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
