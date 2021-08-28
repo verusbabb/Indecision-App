@@ -3,26 +3,36 @@ console.log("app.js is running");
 // JSX - JavaScript XML
 
 const app = {
-  title: "My Indecision Apps",
+  title: "Indecision App",
   subTitle: "Since you can't decide, let a machine decide!",
   options: [],
 };
 
 const onFormSubmit = (e) => {
   e.preventDefault();
-
   const option = e.target.elements.option.value;
   if (option) {
     app.options.push(option);
     e.target.elements.option.value = "";
-    render();
+
+    console.log(app.options);
   }
+  render();
 };
 
 const removeAllOptions = () => {
   app.options = [];
   render();
 };
+
+const makeDecision = () => {
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  alert(option);
+  render();
+};
+
+console.log(app.options);
 
 const render = () => {
   const template = (
@@ -44,10 +54,17 @@ const render = () => {
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option"></input>
         <button>Add Option</button>
-        {app.options.length > 0 && (
-          <button onClick={removeAllOptions}>Remove All Options</button>
-        )}
       </form>
+      <div>
+        <button disabled={app.options.length === 0} onClick={removeAllOptions}>
+          Remove All Options
+        </button>
+      </div>
+      <div>
+        <button disabled={app.options.length === 0} onClick={makeDecision}>
+          What should I do?
+        </button>
+      </div>
     </div>
   );
   ReactDOM.render(template, appRoot);
