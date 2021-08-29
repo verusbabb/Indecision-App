@@ -10,11 +10,10 @@ let changeBtn = "Show Details";
 const showDetails = (e) => {
   e.preventDefault();
   changeBtn = e.target.innerText;
-  if (changeBtn === "Show Details") {
-    changeBtn = "Hide Details";
-  } else {
-    changeBtn = "Show Details";
-  }
+  changeBtn === "Show Details"
+    ? (changeBtn = "Hide Details")
+    : (changeBtn = "Show Details");
+
   render();
 };
 
