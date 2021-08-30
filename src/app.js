@@ -3,8 +3,8 @@ console.log("app.js is running");
 // JSX - JavaScript XML
 
 const app = {
-  title: "Indecision App",
-  subTitle: "Since you can't decide, let a machine decide!",
+  title: "Indecision",
+  subTitle: "Put your life in the hands of a computer.",
   options: [],
 };
 
