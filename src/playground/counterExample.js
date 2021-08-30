@@ -1,3 +1,5 @@
+const appRoot = document.getElementById("app");
+
 let count = 0;
 
 const addOne = () => {

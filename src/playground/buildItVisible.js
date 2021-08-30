@@ -21,9 +21,7 @@ const render = () => {
   const template = (
     <div>
       <h1>{content.title}</h1>
-      <button name="option" onClick={showDetails}>
-        {changeBtn}
-      </button>
+      <button onClick={showDetails}>{changeBtn}</button>
       {changeBtn === "Hide Details" && <p>{content.details}</p>}
     </div>
   );
