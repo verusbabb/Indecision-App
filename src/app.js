@@ -1,74 +1,58 @@
-console.log("app.js is running");
-
-// JSX - JavaScript XML
-
-const app = {
-  title: "Indecision",
-  subTitle: "Put your life in the hands of a computer.",
-  options: [],
-};
-
-const onFormSubmit = (e) => {
-  e.preventDefault();
-  const option = e.target.elements.option.value;
-  if (option) {
-    app.options.push(option);
-    e.target.elements.option.value = "";
-
-    console.log(app.options);
+class IndecisonApp extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Action />
+        <Options />
+        <AddOption />
+      </div>
+    );
   }
-  render();
-};
+}
 
-const removeAllOptions = () => {
-  app.options = [];
-  render();
-};
-
-const makeDecision = () => {
-  const randomNum = Math.floor(Math.random() * app.options.length);
-  const option = app.options[randomNum];
-  alert(option);
-  render();
-};
-
-console.log(app.options);
-
-const render = () => {
-  const template = (
-    <div>
-      <h1>{app.title}</h1>
-      {app.subTitle && <h3>{app.subTitle}</h3>}
-      {app.options && app.options.length > 0 ? (
-        <h4>
-          Here are your options:
-          <ol>
-            {app.options.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ol>
-        </h4>
-      ) : (
-        "No options"
-      )}
-      <form onSubmit={onFormSubmit}>
-        <input type="text" name="option"></input>
-        <button>Add Option</button>
-      </form>
+class Header extends React.Component {
+  render() {
+    return (
       <div>
-        <button disabled={app.options.length === 0} onClick={removeAllOptions}>
-          Remove All Options
-        </button>
+        <h1>Indecision</h1>
+        <h2>Put your life in the hands of a computer.</h2>
       </div>
-      <div>
-        <button disabled={app.options.length === 0} onClick={makeDecision}>
-          What should I do?
-        </button>
-      </div>
-    </div>
-  );
-  ReactDOM.render(template, appRoot);
-};
+    );
+  }
+}
 
-const appRoot = document.getElementById("app");
-render();
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button>What should I do?</button>
+      </div>
+    );
+  }
+}
+
+class Options extends React.Component {
+  render() {
+    return (
+      <div>
+        Options component placeholder
+        <Option />
+      </div>
+    );
+  }
+}
+
+class AddOption extends React.Component {
+  render() {
+    return <div>AddOption component placeholder</div>;
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return <div>Option Component</div>;
+  }
+}
+
+ReactDOM.render(<IndecisonApp />, document.getElementById("app"));
