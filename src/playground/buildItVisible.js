@@ -1,33 +1,67 @@
-const content = {
-  title: "Visibility Toggle",
-  details: "Hi, I am the details",
-};
+class VisibilityToggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+    this.state = {
+      visibility: false,
+    };
+  }
 
-let visibility = false;
+  handleToggleVisibility() {
+    this.setState((prevState) => {
+      return {
+        visibility: !prevState.visibility,
+      };
+    });
+  }
+  render() {
+    return (
+      <div>
+        <h1>Visibility Toggle</h1>
+        {!this.state.visibility && (
+          <button onClick={this.handleToggleVisibility}>Show Details</button>
+        )}
+        {this.state.visibility && (
+          <button onClick={this.handleToggleVisibility}>Hide Details</button>
+        )}
+        {this.state.visibility && <p>Hi, I am the details</p>}
+      </div>
+    );
+  }
+}
 
-const toggleVisibility = () => {
-  visibility = !visibility;
+ReactDOM.render(<VisibilityToggle />, document.getElementById("app"));
 
-  render();
-};
+// const content = {
+//   title: "Visibility Toggle",
+//   details: "Hi, I am the details",
+// };
 
-const render = () => {
-  const template = (
-    <div>
-      <h1>{content.title}</h1>
-      <button onClick={toggleVisibility}>
-        {visibility ? "Hide Details" : "Show Details"}
-      </button>
-      {visibility && (
-        <div>
-          <p>{content.details}</p>
-        </div>
-      )}
-    </div>
-  );
-  ReactDOM.render(template, appRoot);
-};
+// let visibility = false;
 
-const appRoot = document.getElementById("app");
+// const toggleVisibility = () => {
+//   visibility = !visibility;
 
-render();
+//   render();
+// };
+
+// const render = () => {
+//   const template = (
+//     <div>
+//       <h1>{content.title}</h1>
+//       <button onClick={toggleVisibility}>
+//         {visibility ? "Hide Details" : "Show Details"}
+//       </button>
+//       {visibility && (
+//         <div>
+//           <p>{content.details}</p>
+//         </div>
+//       )}
+//     </div>
+//   );
+//   ReactDOM.render(template, appRoot);
+// };
+
+// const appRoot = document.getElementById("app");
+
+// render();
